@@ -1,0 +1,708 @@
+/*
+HOMEWORK:
+
+1. INSERT 200 STUDENTS INTO THE STUDENTS TABLE
+
+2. ASSIGN THE STUDENTS TO CLASSES BY INSERTING RECORDS INTO "StudentClassAttendance" Table
+
+3. CREATE A "GRADE" TABLE   { StudentId, ClassId, Score, LetterGrade }
+
+4. ASSIGN Grades to all the students in at least 5 classes.
+Because of the issue with time constraints, I am presuming that each student will be allocated to just one class, 
+while ensuring that all students are enrolled in a minimum of five classes.
+*/
+
+-- create database BussinessAnalytics;
+USE BussinessAnalytics;
+-- CREATE TABLE Classes (
+--     ClassId INT PRIMARY KEY,
+--     ClassName VARCHAR(50)
+-- );
+
+
+-- CREATE TABLE Students (
+--     StudentId INT PRIMARY KEY,
+--     FirstName VARCHAR(50),
+--     LastName VARCHAR(50),
+--     Gender VARCHAR(10),
+--     Department VARCHAR(50),
+--     Discipline VARCHAR(50),
+--     Height DECIMAL(5, 2)
+-- );
+
+
+-- CREATE TABLE StudentClassAttendance (
+--     ClassId INT,
+--     StudentId INT,
+--     FOREIGN KEY (ClassId) REFERENCES Classes(ClassId),
+--     FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
+-- );
+
+
+-- test Insert 200 students
+-- INSERT INTO Students (StudentId, FirstName, LastName, Gender, Department, Discipline, Height)
+-- VALUES
+--     (1,'John', 'Doe', 'Male', 'Business', 'Finance', 175.0);
+
+
+-- Insert 200 students
+-- INSERT INTO Students (StudentId, FirstName, LastName, Gender, Department, Discipline, Height)
+-- VALUES
+--     (2, 'Jane', 'Smith', 'Female', 'Business', 'Marketing', 162.5),
+--     (3, 'Jane3', 'Smith3', 'Female', 'Business', 'Marketing', 162.5),
+--     (4, 'Jane3', 'Smith3', 'Male', 'Business', 'Marketing', 162.5),
+
+--     (5, 'John', 'Doe', 'Male', 'Business', 'Finance', 175.0),
+--     (6, 'Jane', 'Smith', 'Female', 'Business', 'Marketing', 162.5),
+--     (7, 'Michael', 'Johnson', 'Male', 'Economics', 'Econometrics', 180.0),
+--     (8, 'Emily', 'Williams', 'Female', 'Business', 'Management', 170.0),
+--     (9, 'David', 'Brown', 'Male', 'Business', 'Finance', 176.5),
+--     (10, 'Emma', 'Jones', 'Female', 'Business', 'Marketing', 165.0),
+--     (11, 'Daniel', 'Miller', 'Male', 'Economics', 'Macroeconomics', 178.0),
+--     (12, 'Olivia', 'Davis', 'Female', 'Business', 'Management', 168.0),
+--     (13, 'William', 'Wilson', 'Male', 'Business', 'Finance', 172.0),
+--     (14, 'Ava', 'Martinez', 'Female', 'Business', 'Marketing', 160.0),
+--     (15, 'Alex', 'Johnson', 'Male', 'Business', 'Management', 180.0),
+--     
+--     (16, 'Sophia', 'Smith', 'Female', 'Business', 'Marketing', 160.0),
+--     (17, 'Jackson', 'Johnson', 'Male', 'Economics', 'Econometrics', 175.0),
+--     (18, 'Olivia', 'Williams', 'Female', 'Business', 'Management', 165.0),
+--     (19, 'Liam', 'Brown', 'Male', 'Business', 'Finance', 170.0),
+--     (20, 'Emma', 'Jones', 'Female', 'Business', 'Marketing', 155.0),
+--     (21, 'Aiden', 'Davis', 'Male', 'Economics', 'Macroeconomics', 178.0),
+--     (22, 'Ava', 'Miller', 'Female', 'Business', 'Management', 162.0),
+--     (23, 'Noah', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (24, 'Isabella', 'Martinez', 'Female', 'Business', 'Marketing', 158.0),
+--     (25, 'Ethan', 'Anderson', 'Male', 'Economics', 'Econometrics', 180.0),
+--     (26, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 172.0),
+--     
+--     (27, 'James', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (28, 'Isabella', 'Johnson', 'Female', 'Business', 'Marketing', 165.0),
+--     (29, 'Ethan', 'Williams', 'Male', 'Business', 'Finance', 170.0),
+--     (30, 'Ava', 'Brown', 'Female', 'Business', 'Marketing', 155.0),
+--     (31, 'Liam', 'Davis', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (32, 'Sophia', 'Miller', 'Female', 'Business', 'Management', 162.0),
+--     (33, 'Jackson', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (34, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 158.0),
+--     (35, 'Noah', 'Anderson', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (36, 'Emma', 'Rodriguez', 'Female', 'Business', 'Management', 160.0),
+--     (37, 'Aiden', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (38, 'Ava', 'Johnson', 'Female', 'Business', 'Marketing', 165.0),
+--     (39, 'Liam', 'Williams', 'Male', 'Business', 'Finance', 170.0),
+--     (40, 'Sophia', 'Brown', 'Female', 'Business', 'Marketing', 155.0),
+--     
+--     (41, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 175.0),
+--     (42, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 165.0),
+--     (43, 'Noah', 'Miller', 'Male', 'Business', 'Finance', 170.0),
+--     (44, 'Emma', 'Wilson', 'Female', 'Business', 'Marketing', 155.0),
+--     (45, 'Aiden', 'Martinez', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (46, 'Sophia', 'Rodriguez', 'Female', 'Business', 'Management', 162.0),
+--     (47, 'Liam', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (48, 'Isabella', 'Johnson', 'Female', 'Business', 'Marketing', 158.0),
+--     (49, 'Ethan', 'Williams', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (50, 'Ava', 'Brown', 'Female', 'Business', 'Management', 160.0),
+--     (51, 'James', 'Davis', 'Male', 'Business', 'Finance', 175.0),
+--     (52, 'Olivia', 'Miller', 'Female', 'Business', 'Marketing', 165.0),
+--     (53, 'Jackson', 'Wilson', 'Male', 'Business', 'Finance', 170.0),
+--     (54, 'Emma', 'Martinez', 'Female', 'Business', 'Marketing', 155.0),
+--     (55, 'Aiden', 'Anderson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (56, 'Sophia', 'Davis', 'Female', 'Business', 'Marketing', 165.0),
+--     (57, 'Liam', 'Miller', 'Male', 'Business', 'Finance', 170.0),
+--     (58, 'Olivia', 'Wilson', 'Female', 'Business', 'Marketing', 155.0),
+--     (59, 'Jackson', 'Martinez', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (60, 'Emma', 'Rodriguez', 'Female', 'Business', 'Management', 162.0),
+--     (61, 'Aiden', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (62, 'Isabella', 'Johnson', 'Female', 'Business', 'Marketing', 158.0),
+--     (63, 'Ethan', 'Williams', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (64, 'Ava', 'Brown', 'Female', 'Business', 'Management', 160.0),
+--     (65, 'James', 'Davis', 'Male', 'Business', 'Finance', 175.0),
+--     (66, 'Olivia', 'Miller', 'Female', 'Business', 'Marketing', 165.0),
+--     (67, 'Jackson', 'Wilson', 'Male', 'Business', 'Finance', 170.0),
+--     (68, 'Emma', 'Martinez', 'Female', 'Business', 'Marketing', 155.0),
+--     (69, 'Aiden', 'Anderson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (70, 'Emma', 'Martinez', 'Female', 'Business', 'Marketing', 162.0),
+--     (71, 'Aiden', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (72, 'Isabella', 'Johnson', 'Female', 'Business', 'Marketing', 158.0),
+--     (73, 'Ethan', 'Williams', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (74, 'Ava', 'Brown', 'Female', 'Business', 'Management', 160.0),
+--     (75, 'James', 'Davis', 'Male', 'Business', 'Finance', 175.0),
+--     (76, 'Olivia', 'Miller', 'Female', 'Business', 'Marketing', 165.0),
+--     (77, 'Jackson', 'Wilson', 'Male', 'Business', 'Finance', 170.0),
+--     (78, 'Emma', 'Martinez', 'Female', 'Business', 'Marketing', 155.0),
+--     (79, 'Sophia', 'Davis', 'Female', 'Business', 'Marketing', 165.0),
+--     (80, 'Liam', 'Miller', 'Male', 'Business', 'Finance', 170.0),
+--     (81, 'Olivia', 'Wilson', 'Female', 'Business', 'Marketing', 155.0),
+--     (82, 'Jackson', 'Martinez', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (83, 'Emma', 'Rodriguez', 'Female', 'Business', 'Management', 162.0),
+--     (84, 'Aiden', 'Smith', 'Male', 'Business', 'Finance', 175.0),
+--     (85, 'Isabella', 'Johnson', 'Female', 'Business', 'Marketing', 158.0),
+--     (86, 'Ethan', 'Williams', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (87, 'Ava', 'Brown', 'Female', 'Business', 'Management', 160.0),
+--     (88, 'James', 'Davis', 'Male', 'Business', 'Finance', 175.0),
+--     (89, 'Mia', 'Garcia', 'Female', 'Business', 'Management', 160.0),
+--     (90, 'Aiden', 'Anderson', 'Male', 'Economics', 'Econometrics', 178.0),
+-- 	(91, 'Sophia', 'Anderson', 'Female', 'Business', 'Marketing', 165.0),
+--     (92, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (93, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (94, 'Jackson', 'Smith', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (95, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (96, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (97, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (98, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (99, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (100, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (101, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (102, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (103, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (104, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (105, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (106, 'Liam', 'Brown', 'Male', 'Business', 'Finance', 170.0),
+--     (107, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (108, 'Jackson', 'Smith', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (109, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (110, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (111, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (112, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (113, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (114, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (115, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (116, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (117, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (118, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (119, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (120, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     
+--     (121, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (122, 'Jackson', 'Smith', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (123, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (124, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (125, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (126, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (127, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (128, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (129, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (130, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (131, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (132, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (133, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (134, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (135, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (136, 'Jackson', 'Smith', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (137, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (138, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+
+--     (139, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (140, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (141, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (142, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (143, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (144, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (145, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (146, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (147, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (148, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (149, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (150, 'Jackson', 'Smith', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (151, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (152, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (153, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (154, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (155, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (156, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (157, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (158, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+
+--     (159, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (160, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (161, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (162, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (163, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (164, 'Jackson', 'Smith', 'Male', 'Economics', 'Macroeconomics', 178.0),
+--     (165, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (166, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (167, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (168, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (169, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (170, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (171, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (172, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (173, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (174, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (175, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (176, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (177, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (178, 'Jackson', 'Smith', 'Male', 'Economics', 'Macroeconomics', 178.0),
+--     (179, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (180, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (181, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (182, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     
+-- 	(183, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (184, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (185, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (186, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0),
+--     (187, 'Emma', 'Smith', 'Female', 'Business', 'Marketing', 155.0),
+--     (188, 'Aiden', 'Johnson', 'Male', 'Economics', 'Econometrics', 178.0),
+--     (189, 'Sophia', 'Williams', 'Female', 'Business', 'Management', 162.0),
+--     (190, 'Liam', 'Rodriguez', 'Male', 'Business', 'Finance', 170.0),
+--     (191, 'Olivia', 'Davis', 'Female', 'Business', 'Marketing', 155.0),
+--     (192, 'Jackson', 'Smith', 'Male', 'Economics', 'Macroeconomics', 178.0),
+--     (193, 'Emma', 'Johnson', 'Female', 'Business', 'Management', 162.0),
+--     (194, 'Aiden', 'Williams', 'Male', 'Business', 'Finance', 175.0),
+--     (195, 'Isabella', 'Brown', 'Female', 'Business', 'Marketing', 158.0),
+--     (196, 'Ethan', 'Davis', 'Male', 'Economics', 'Macroeconomics', 180.0),
+--     (197, 'Ava', 'Miller', 'Female', 'Business', 'Management', 160.0),
+--     (198, 'James', 'Wilson', 'Male', 'Business', 'Finance', 175.0),
+--     (199, 'Olivia', 'Martinez', 'Female', 'Business', 'Marketing', 165.0),
+--     (200, 'Jackson', 'Jones', 'Male', 'Business', 'Finance', 170.0)
+
+
+-- ;
+
+
+-- Insert records into classes table
+-- INSERT INTO classes (ClassId, ClassName)
+-- VALUES
+--     (1, 'Data Mining'),
+--     (2, 'Bussiness Analytics'),
+--     (3, 'Big Data'),
+--     (4, 'Decision Making'),
+--     (5, 'Information System Technology');
+
+-- test
+-- INSERT INTO StudentClassAttendance (ClassId, StudentId)
+-- VALUES
+--     (1, 1), 
+--     (1, 2);
+
+-- INSERT INTO StudentClassAttendance (ClassId, StudentId)
+-- VALUES
+--     (1, 3),
+--     (2, 4), -- Assign StudentId 4 to ClassId 2
+--     (2, 5),
+--     (3, 6), -- Assign StudentId 6 to ClassId 3
+--     (3, 7),
+--     (4, 8), -- Assign StudentId 8 to ClassId 4
+--     (4, 9),
+--     (5, 10), -- Assign StudentId 10 to ClassId 5
+--     (5, 11),
+--     (1, 12), -- Assign StudentId 12 to ClassId 1
+--     (2, 13), -- Assign StudentId 13 to ClassId 2
+--     (3, 14), -- Assign StudentId 14 to ClassId 3
+--     (4, 15), -- Assign StudentId 15 to ClassId 4
+--     (5, 16), -- Assign StudentId 16 to ClassId 5
+--     (1, 17), -- Assign StudentId 17 to ClassId 1
+--     (2, 18), -- Assign StudentId 18 to ClassId 2
+--     (3, 19), -- Assign StudentId 19 to ClassId 3
+--     (5, 20),
+--     (5, 21),
+--     (5, 22),
+--     (5, 23),
+--     (5, 24),
+--     (5, 25),
+--     (5, 26),
+--     (5, 27),
+--     (5, 28),
+--     (5, 29),
+--     (5, 30),
+--     (5, 31),
+--     (2, 32), -- Assign StudentId 32 to ClassId 2
+--     (3, 33), -- Assign StudentId 33 to ClassId 3
+--     (4, 34), -- Assign StudentId 34 to ClassId 4
+--     (5, 35), -- Assign StudentId 35 to ClassId 5
+--     (1, 36),
+--     (2, 37),
+--     (3, 38),
+--     (4, 39),
+--     (5, 40),
+--     (1, 41),
+--     (2, 42),
+--     (3, 43),
+--     (4, 44),
+--     (5, 45),
+--     (1, 46),
+--     (2, 47),
+--     (3, 48),
+--     (4, 49),
+--     (5, 50),
+--     (1, 51),
+--     (2, 52),
+--     (3, 53),
+--     (4, 54),
+-- 	(1, 55), -- Assign StudentId 55 to ClassId 1
+--     (2, 56), -- Assign StudentId 56 to ClassId 2
+--     (3, 57), -- Assign StudentId 57 to ClassId 3
+--     (4, 58), -- Assign StudentId 58 to ClassId 4
+--     (5, 59), -- Assign StudentId 59 to ClassId 5
+--     (1,60),
+--     (2, 61),
+--     (3, 62),
+--     (4, 63),
+--     (5, 64),
+--     (1, 65),
+--     (2, 66),
+--     (3, 67),
+--     (4, 68),
+--     (5, 69),
+--     (1, 70),
+--     (2, 71),
+--     (3, 72),
+--     (4, 73),
+--     (5, 74),
+--     (2, 75),
+--     (1, 76),
+--     (3, 77),
+--     (4, 78),
+--     (1, 79), -- Assign StudentId 79 to ClassId 1
+--     (2, 80), -- Assign StudentId 80 to ClassId 2
+--     (3, 81), -- Assign StudentId 81 to ClassId 3
+--     (4, 82), -- Assign StudentId 82 to ClassId 4
+--     (5, 83), -- Assign StudentId 83 to ClassId 5
+--     (1, 84),
+--     (2, 85),
+--     (3, 86),
+--     (4, 87),
+--     (5, 88),
+--     (1, 89),
+--     (2, 90),
+--     (3, 91),
+--     (4, 92),
+--     (5, 93),
+--     (1, 94),
+--     (2, 95),
+--     (3, 96),
+--     (4, 97),
+--     (5, 98),
+--     (1, 99),
+--     (2, 100),
+
+
+--     (1, 101), -- Assign StudentId 101 to ClassId 1
+--     (1, 102),
+--     (1, 103),
+--     (2, 104), -- Assign StudentId 104 to ClassId 2
+--     (2, 105),
+--     (3, 106), -- Assign StudentId 106 to ClassId 3
+--     (3, 107),
+--     (4, 108), -- Assign StudentId 108 to ClassId 4
+--     (4, 109),
+--     (5, 110), -- Assign StudentId 110 to ClassId 5
+--     (5, 111),
+--     (1, 112), -- Assign StudentId 112 to ClassId 1
+--     (2, 113), -- Assign StudentId 113 to ClassId 2
+--     (3, 114), -- Assign StudentId 114 to ClassId 3
+--     (4, 115), -- Assign StudentId 115 to ClassId 4
+--     (5, 116), -- Assign StudentId 116 to ClassId 5
+--     (1, 117), -- Assign StudentId 117 to ClassId 1
+--     (2, 118), -- Assign StudentId 118 to ClassId 2
+--     (3, 119), -- Assign StudentId 119 to ClassId 3
+--     (5, 120),
+--     (5, 121),
+--     (5, 122),
+--     (5, 123),
+--     (5, 124),
+--     (5, 125),
+--     (5, 126),
+--     (5, 127),
+--     (5, 128),
+--     (5, 129),
+--     (5, 130),
+--     (5, 131),
+--     (2, 132), -- Assign StudentId 132 to ClassId 2
+--     (3, 133), -- Assign StudentId 133 to ClassId 3
+--     (4, 134), -- Assign StudentId 134 to ClassId 4
+--     (5, 135), -- Assign StudentId 135 to ClassId 5
+--     (1, 136),
+--     (2, 137),
+--     (3, 138),
+--     (4, 139),
+--     (5, 140),
+--     (1, 141),
+--     (2, 142),
+--     (3, 143),
+--     (4, 144),
+--     (5, 145),
+--     (1, 146),
+--     (2, 147),
+--     (3, 148),
+--     (4, 149),
+--     (5, 150),
+--     (1, 151),
+--     (2, 152),
+--     (3, 153),
+--     (4, 154),
+-- 	(1, 155), -- Assign StudentId 131 to ClassId 1
+--     (2, 156), -- Assign StudentId 156 to ClassId 2
+--     (3, 157), -- Assign StudentId 157 to ClassId 3
+--     (4, 158), -- Assign StudentId 158 to ClassId 4
+--     (5, 159), -- Assign StudentId 159 to ClassId 5
+--     (1, 160),
+--     (2, 161),
+--     (3, 162),
+--     (4, 163),
+--     (5, 164),
+--     (1, 165),
+--     (2, 166),
+--     (3, 167),
+--     (4, 168),
+--     (5, 169),
+--     (1, 170),
+--     (2, 171),
+--     (3, 172),
+--     (4, 173),
+--     (5, 174),
+--     (1, 175),
+--     (2, 176),
+--     (3, 177),
+--     (4, 178),
+--     (1, 179), -- Assign StudentId 179 to ClassId 1
+--     (2, 180), -- Assign StudentId 180 to ClassId 2
+--     (3, 181), -- Assign StudentId 181 to ClassId 3
+--     (4, 182), -- Assign StudentId 182 to ClassId 4
+--     (5, 183), -- Assign StudentId 183 to ClassId 5
+--     (1, 184),
+--     (2, 185),
+--     (3, 186),
+--     (4, 187),
+--     (5, 188),
+--     (1, 189),
+--     (2, 190),
+--     (3, 191),
+--     (4, 192),
+--     (5, 193),
+--     (1, 194),
+--     (2, 195),
+--     (3, 196),
+--     (4, 197),
+--     (5, 198),
+--     (1, 199),
+--     (2, 200)
+
+-- ;   
+
+
+-- Create the GRADE table
+-- CREATE TABLE GRADE (
+--     StudentId INT,
+--     ClassId INT,
+--     Score DECIMAL(5, 2),
+--     LetterGrade CHAR(1),
+--     PRIMARY KEY (StudentId, ClassId),
+--     FOREIGN KEY (StudentId) REFERENCES Students(StudentId),
+--     FOREIGN KEY (ClassId) REFERENCES classes(ClassId)
+-- );
+
+
+
+
+-- test
+-- Insert grades for all students in at least 5 classes
+-- INSERT INTO GRADE (StudentId, ClassId, Score, LetterGrade)
+-- VALUES
+--     (101, 1, 85.5, 'A'),
+--     (1, 2, 78.2, 'B');
+
+-- Insert grades for all students in at least 5 classes
+-- INSERT INTO GRADE (StudentId, ClassId, Score, LetterGrade)
+-- VALUES
+--     (2, 3, 63.8, 'C'),
+--     (3, 4, 89.1, 'A'),
+--     (4, 5, 95.6, 'A'),
+--     (5, 1, 90.2, 'A'),
+--     (6, 2, 88.7, 'B'),
+--     (7, 1, 95.3, 'A'),
+--     (8, 3, 69.8, 'C'),
+--     (9, 3, 74.2, 'C'),
+--     (10, 4, 92.8, 'A'),
+--     (11, 1, 85.3, 'A'),
+--     (12, 3, 90.1, 'A'),
+--     (13, 5, 76.8, 'B'),
+--     (14, 2, 70.6, 'C'),
+--     (15, 4, 95.5, 'A'),
+--     (16, 1, 82.9, 'B'),
+--     (17, 4, 69.3, 'C'),
+--     (18, 1, 96.9, 'A'),
+--     (19, 2, 72.4, 'C'),
+--     (20, 5, 75.9, 'B'),
+--     (21, 2, 80.6, 'B'),
+--     (22, 4, 92.7, 'A'),
+--     (23, 5, 86.1, 'B'),
+--     (24, 2, 84.5, 'B'),
+--     (25, 4, 89.6, 'A'),
+--     (26, 1, 94.8, 'A'),
+--     (27, 4, 88.9, 'B'),
+--     (28, 1, 92.4, 'A'),
+--     (29, 3, 85.2, 'B'),
+--     (30, 4, 72.6, 'C'),
+--     (31, 1, 88.7, 'B'),
+--     (32, 3, 91.1, 'A'),
+--     (33, 5, 73.6, 'C'),
+--     (34, 2, 78.9, 'B'),
+--     (35, 4, 68.5, 'C'),
+--     (36, 2, 88.4, 'B'),
+--     (37, 3, 76.1, 'B'),
+--     (38, 5, 70.3, 'C'),
+--     (39, 2, 82.2, 'B'),
+--     (40, 4, 79.8, 'B'),
+--     (41, 1, 71.5, 'C'),
+--     (42, 3, 84.6, 'B'),
+--     (43, 5, 86.9, 'B'),
+--     (44, 2, 92.5, 'A'),
+--     (45, 4, 70.9, 'C'),
+--     (46, 1, 81.2, 'B'),
+--     (47, 3, 76.7, 'B'),
+--     (48, 5, 69.8, 'C'),
+--     (49, 2, 83.5, 'B'),
+--     (50, 4, 79.0, 'B'),
+--     (51, 1, 72.1, 'C'),
+--     (52, 3, 84.2, 'B'),
+--     (53, 5, 80.5, 'B'),
+--     (54, 2, 73.7, 'C'),
+--     (55, 4, 76.8, 'B'),
+--     (56, 1, 73.6, 'C'),
+--     (57, 3, 84.3, 'B'),
+--     (58, 5, 86.5, 'B'),
+--     (59, 1, 79.7, 'B'),
+--     (60, 3, 75.3, 'B'),
+--     (61, 5, 71.4, 'C'),
+--     (62, 2, 83.7, 'B'),
+--     (63, 4, 80.2, 'B'),
+--     (64, 2, 90.5, 'A'),
+--     (65, 3, 83.0, 'B'),
+--     (66, 1, 72.6, 'C'),
+--     (67, 3, 91.2, 'A'),
+--     (68, 4, 75.7, 'B'),
+--     (69, 1, 74.2, 'C'),
+--     (70, 3, 83.2, 'B'),
+--     (71, 5, 85.4, 'B'),
+--     (72, 1, 80.1, 'B'),
+--     (73, 4, 86.2, 'B'),
+--     (74, 1, 91.0, 'A'),
+--     (75, 2, 82.5, 'B'),
+--     (76, 4, 79.3, 'B'),
+--     (77, 1, 73.8, 'C'),
+--     (78, 3, 82.0, 'B'),
+--     (79, 5, 88.8, 'B'),
+--     (80, 2, 90.8, 'A'),
+--     (81, 3, 81.7, 'B'),
+--     (82, 5, 87.9, 'B'),
+--     (83, 1, 79.3, 'B'),
+--     (84, 4, 85.5, 'B'),
+--     (85, 5, 69.6, 'C'),
+--     (86, 3, 83.6, 'B'),
+--     (87, 4, 78.1, 'B'),
+--     (88, 1, 81.9, 'B'),
+--     (89, 3, 75.5, 'B'),
+--     (90, 5, 70.9, 'C'),
+--     (91, 2, 83.8, 'B'),
+--     (92, 3, 81.2, 'B'),
+--     (93, 5, 88.3, 'B'),
+--     (94, 2, 89.0, 'B'),
+--     (95, 4, 77.9, 'B'),
+--     (96, 1, 79.8, 'B'),
+--     (97, 3, 74.2, 'B'),
+--     (98, 5, 70.6, 'C'),
+--     (99, 2, 82.7, 'B'),
+--     (100, 4, 78.5, 'B'),
+--     (102, 1, 92.7, 'A'),
+--     (103, 2, 75.0, 'B'),
+--     (104, 3, 70.3, 'B'),
+--     (105, 4, 81.4, 'B'),
+--     (106, 5, 73.9, 'B'),
+--     (107, 1, 95.3, 'A'),
+--     (108, 3, 69.8, 'C'),
+-- 		(109, 3, 74.2, 'C'),
+--     (110, 5, 78.9, 'B'),
+--     (111, 2, 67.5, 'C'),
+--     (112, 4, 79.4, 'B'),
+--     (113, 1, 93.7, 'A'),
+--     (114, 3, 88.0, 'B'),
+--     (115, 5, 83.2, 'B'),
+--     (116, 2, 91.6, 'A'),
+--     (117, 3, 78.7, 'B'),
+--     (118, 5, 84.6, 'B'),
+--     (119, 2, 72.4, 'C'),
+--     (120, 4, 88.2, 'B'),
+--     (121, 1, 91.3, 'A'),
+--     (122, 3, 73.4, 'C'),
+--     (123, 1, 77.8, 'B'),
+--     (124, 3, 67.2, 'C'),
+--     (125, 5, 81.7, 'B'),
+--     (126, 2, 76.5, 'B'),
+--     (127, 3, 80.3, 'B'),
+--     (128, 5, 73.1, 'C'),
+--     (129, 2, 79.7, 'B'),
+--     (130, 5, 89.0, 'B'),
+--     (131, 2, 76.4, 'B'),
+--     (132, 4, 82.3, 'B'),
+--     (133, 1, 90.2, 'A'),
+--     (134, 3, 85.7, 'B'),
+--     (135, 5, 92.8, 'A'),
+--     (136, 1, 80.6, 'B'),
+--     (137, 4, 89.9, 'B'),
+--     (138, 1, 94.5, 'A'),
+--     (139, 3, 87.6, 'B'),
+--     (140, 5, 83.7, 'B'),
+--     (141, 2, 91.7, 'A'),
+--     (142, 4, 77.4, 'B'),
+--     (143, 1, 78.1, 'B'),
+--     (144, 3, 82.7, 'B'),
+--     (145, 5, 89.3, 'B'),
+--     (146, 2, 88.9, 'B'),
+--     (147, 4, 87.1, 'B'),
+--     (148, 1, 93.2, 'A'),
+--     (149, 3, 85.4, 'B'),
+--     (150, 5, 84.7, 'B'),
+--     (151, 2, 91.4, 'A'),
+--     (152, 4, 76.9, 'B'),
+--     (153, 1, 88.2, 'B'),
+--     (154, 3, 90.7, 'A'),
+--     (155, 3, 82.4, 'B'),
+--     (156, 5, 89.2, 'B'),
+--     (157, 2, 91.8, 'A'),
+--     (158, 4, 78.9, 'B'),
+--     (159, 2, 88.0, 'B'),
+--     (160, 4, 87.6, 'B'),
+--     (161, 1, 92.1, 'A'),
+--     (162, 3, 85.8, 'B'),
+--     (163, 5, 84.6, 'B'),
+--     (164, 1, 74.9, 'C'),
+
+--     (165, 4, 77.4, 'B'),
+--     (166, 5, 89.7, 'B'),
+--     (167, 2, 91.2, 'A'),
+--     (168, 3, 81.5, 'B'),
+--     (169, 5, 88.0, 'B'),
+--     (170, 2, 90.3, 'A'),
+--     (171, 4, 78.6, 'B'),
+--     (172, 2, 87.8, 'B'),
+--     (173, 3, 74.5, 'B'),
+--     (174, 5, 70.0, 'C'),
+--     (175, 3, 84.6, 'B'),
+--     (176, 5, 83.7, 'B'),
+--     (177, 2, 89.5, 'A'),
+--     (178, 4, 76.5, 'B'),
+--     (179, 1, 72.2, 'C'),
+--     (180, 4, 90.8, 'A'),
+--     (181, 2, 88.5, 'B'),
+--     (182, 4, 75.0, 'B'),
+--     (183, 2, 86.0, 'B'),
+--     (184, 3, 73.2, 'C'),
+--     (185, 1, 90.9, 'A'),
+--     (186, 2, 82.4, 'B'),
+--     (187, 5, 84.8, 'B'),
+--     (188, 2, 87.3, 'B'),
+--     (189, 4, 86.7, 'B'),
+--     (190, 1, 92.0, 'A'),
+--     (191, 5, 83.8, 'B'),
+--     (192, 4, 74.6, 'B'),
+--     (193, 1, 73.7, 'C'),
+--     (194, 3, 82.3, 'B'),
+--     (195, 5, 85.7, 'B'),
+--     (196, 2, 87.4, 'B'),
+--     (197, 4, 86.5, 'B'),
+--     (198, 1, 91.5, 'A'),
+--     (199, 3, 83.9, 'B'),
+--     (200, 5, 84.9, 'B')
+--     
+--     ;
